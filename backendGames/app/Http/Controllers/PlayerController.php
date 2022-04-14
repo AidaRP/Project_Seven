@@ -9,7 +9,7 @@ use App\Models\User;
 
 class PlayerController extends Controller
 {
-    //List All Users
+    //List All Players
     public function playersAll()
     {
 
@@ -25,7 +25,7 @@ class PlayerController extends Controller
         }
     }
 
-    //List User By Id
+    //List PLayer By Id
     public function playerById(Request $request)
     {
 
@@ -41,9 +41,35 @@ class PlayerController extends Controller
         }
     }
 
-    
+    //Update Player
+    public function updatePlayer(Request $request)
+    {
 
+        $id = $request->input('id');
+        $name = $request->input('name');
+        $nick = $request->input('nick');
+        $email = $request->input('email');
+        $password = $request->input('password');
+        $role = $request->input('role');
 
+        try {
+            $player = User::where('id', "=", $id)->update(
+                [
+                    'name' => $name,
+                    'nick' => $nick,
+                    'email' => $email,
+                    'password' => $password,
+                    'role' => $role,
+                ]
+            );
+            return User::all()->where('id', "=", $id);
+        } catch (QueryException $error) {
+            $codeError = $error->errorInfo[1];
+            if ($codeError) {
+                return "Error $codeError";
+            }
+        }
+    }
 
 
 }
