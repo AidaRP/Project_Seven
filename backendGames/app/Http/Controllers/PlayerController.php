@@ -70,6 +70,33 @@ class PlayerController extends Controller
             }
         }
     }
+    //Delete Player by Id
+    public function deletePlayerById(Request $request){
+        $id = $request->input('id');
 
+        try {
+            $arrayPlayer = User::all()->where('id', "=", $id);
+
+            $player = User::where('id', '=', $id);
+
+            if(count($arrayPlayer) == 0){
+                return response()->json([
+                    "data"=> $arrayPlayer,
+                    "message"=> "Player not found"
+                ]);
+            }else{
+                $player->delete();
+                return response()->json([
+                    "data"=> $arrayPlayer,
+                    "message"=> "Player has been deleted succesfully"
+                ]);
+            }
+        } catch (QueryException $error) {
+            $codeError = $error->errorInfo[1];
+            if($codeError){
+                return "Error $codeError";
+            }
+        }
+    }
 
 }
