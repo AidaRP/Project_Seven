@@ -15,16 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::middleware('auth:api')->group(function (){
+   
 
-Route::group([
-'middleware' => 'jwt.auth'
-], function(){
-
-    Route::get('/players', [PlayerController::class, 'playersAll']);
-    // Route::get('/players', [PlayerController::class, 'playersAll']);
+    Route::get('players', [PlayerController::class, 'playersAll']);
+    Route::post('playerById', [PlayerController::class, "playerById"]);
+    Route::put('updatePlayer',[PlayerController::class,"playerUpdate"]);
+    Route::delete('deletePlayer',[PlayerController::class,"playerDelete"]);
     
 });
 
