@@ -59,7 +59,7 @@ class GameController extends Controller
         }
     }
     //Game update 
-    public function gameupdate(Request $request)
+    public function gameUpdate(Request $request)
     {
         $id = $request->input('id');
         $title = $request->input('title');
@@ -79,7 +79,7 @@ class GameController extends Controller
         }
     }
     //Game delete by Id
-    public function gameDeletebyId(Request $request)
+    public function gameDeleteById(Request $request)
     {
         $id = $request->input('id');
         try {
