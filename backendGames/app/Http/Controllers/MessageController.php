@@ -24,4 +24,25 @@ class MessageController extends Controller
 
         }
     }
+    //Messages by ID
+    public function messageByID(Request $request){
+
+        $id = $request->input('id');
+
+        try {
+
+            $message = Message::all()
+            ->where('id', "=", $id);
+            return $message;
+
+        } catch (QueryException $error) {
+
+            $codeError = $error->errorInfo[1];
+            if($codeError){
+                return "Error $codeError";
+            }
+        }
+    }
+
+
 }
