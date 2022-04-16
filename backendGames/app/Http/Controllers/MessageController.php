@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Database\QueryException;
-use App\Models\Message;
-
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
+
+use App\Models\Message;
 
 class MessageController extends Controller
 {

@@ -14,4 +14,13 @@ class Message extends Model
         'FromPlayer',
         'PartyId'
     ];
+    public function players()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function chats()
+    {
+        return $this->belongsTo(ChatRoom::class);
+    }
 }
