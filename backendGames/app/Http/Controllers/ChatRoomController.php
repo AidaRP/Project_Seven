@@ -65,7 +65,32 @@ public function chatByGameId(Request $request){
         }
     }
 }
+//Create Chat
+public function chatAdd (Request $request){
 
+    $name = $request->input('name');
+    $OwnerId = $request->input('OwnerId');
+    $GameId = $request->input('GameId');
+
+    try {
+
+        return ChatRoom::create(
+            [
+                'name' => $name,
+                'OwnerId' => $OwnerId,
+                'GameId' => $GameId
+            ]
+        );
+
+    } catch (QueryException $error) {
+
+        $codeError = $error->errorInfo[1];
+        if($codeError){
+            return "Error $codeError";
+        }
+        
+    }
+}
 
 
 
