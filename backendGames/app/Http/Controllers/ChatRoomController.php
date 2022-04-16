@@ -91,7 +91,36 @@ public function chatAdd (Request $request){
         
     }
 }
+//Update Chat
+public function chatUpdate (Request $request){
 
+    $id = $request->input('id');
+    $name = $request->input('name');
+    $OwnerId = $request->input('OwnerId');
+    $GameId = $request->input('GameId');
+
+    try {
+
+        $chat = ChatRoom::where('id', '=', $id)
+        ->update(
+            [
+                'name' => $name,
+                'OwnerId' => $OwnerId,
+                'GameId' => $GameId
+            ]
+        );
+        return ChatRoom::all()
+        ->where('id', "=", $id);
+
+    } catch (QueryException $error) {
+
+        $codeError = $error->errorInfo[1];
+        if($codeError){
+            return "Error $codeError";
+        }
+
+    }
+}
 
 
 }
