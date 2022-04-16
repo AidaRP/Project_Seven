@@ -16,4 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+    Route::get('messages', [MessageController::class, "messagesAll"]);
+    Route::post('messageById', [MessageController::class, "messageById"]);
+    Route::post('messageByPartyId', [MessageController::class, "messageByPartyId"]);
+    Route::post('newMessage', [MessageController::class, "messageAdd"]);
+    Route::put('updateMessage', [MessageController::class, "messageUpdate"]);
+    Route::delete('deleteMessage', [MessageController::class, "messageDelete"]);
 });
