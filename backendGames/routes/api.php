@@ -14,7 +14,7 @@ use App\Http\Controllers\GameController;
 |
 */
 
-Route::middleware('auth:api')->group(function () {
+// Route::middleware('auth:api')->group(function () {
 
     Route::get('games', [GameController::class, "gamesAll"]);
 
@@ -23,4 +23,4 @@ Route::middleware('auth:api')->group(function () {
     Route::post('gameAdd', [GameController::class, "gameAdd"]);
     Route::put('gameUpdate', [GameController::class, "gameUpdate"]);
     Route::delete('gameDeleteById', [GameController::class, "gameDeleteById"]);
-});
+// });

@@ -71,6 +71,8 @@ class GameController extends Controller
                 $splashArtUrl = $splashArtUrl,
                 $url = $url
             ]);
+            return Game::all()
+                ->where('id', "=", $id);
         } catch (QueryException $error) {
             $codeError = $error->errorInfo[1];
             if ($codeError) {
@@ -84,7 +86,7 @@ class GameController extends Controller
         $id = $request->input('id');
         try {
             $arrayGame = Game::all()->where('id', "=", $id);
-            
+
             $game = Game::where('id', '=', $id);
 
             if (count($arrayGame) == 0) {
