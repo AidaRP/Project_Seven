@@ -43,6 +43,27 @@ class MessageController extends Controller
             }
         }
     }
+    //Messages by Party Id
+    public function messageByPartyId(Request $request){
 
+        $id = $request->input('id');
+
+        try {
+            $message = Message::selectRaw('messages.message, users.username, parties.name')
+            ->join('parties', 'parties.id', '=', 'messages.PartyId')
+            ->where('messages.PartyId', "=", $id)
+            ->join('users', 'users.id', '=', 'messages.FromPlayer')
+            ->get();
+            return $message;
+
+        } catch (QueryException $error) {
+
+            $codeError = $error->errorInfo[1];
+            if($codeError){
+                return "Error $codeError";
+            }
+        }
+    }
+    //
 
 }
