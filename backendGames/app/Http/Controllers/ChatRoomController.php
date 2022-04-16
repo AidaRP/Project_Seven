@@ -121,6 +121,38 @@ public function chatUpdate (Request $request){
 
     }
 }
+//Delete chat By Id
+public function chatDelete(Request $request){
 
+    $id = $request->input('id');
+
+    try {
+        $arrayChat = ChatRoom::all()
+        ->where('id', '=', $id);
+
+        $chat = ChatRoom::where('id', '=', $id);
+        
+        if (count($arrayChat) == 0) {
+            return response()->json([
+                "data" => $arrayChat,
+                "message" => "The chat not found"
+            ]);
+        }else{
+            $chat->delete();
+            return response()->json([
+                "data" => $arrayChat,
+                "message" => "The chat has been deleted successfully"
+            ]);
+        }
+
+    } catch (QueryException $error) {
+
+        $codeError = $error->errorInfo[1];
+        if($codeError){
+            return "Error $codeError";
+        }
+
+    }
+}
 
 }
