@@ -8,4 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class ChatRoom extends Model
 {
     use HasFactory;
+    public $fillable = [
+        'name',
+        'OwnerID',
+        'GameID'
+    ];
+
+    public function games()
+    {
+        return $this->belongsTo(Game::class);
+    }
+
+    public function players()
+    {
+        return $this->belongsTo(User::class);
+    }
+    
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
 }
