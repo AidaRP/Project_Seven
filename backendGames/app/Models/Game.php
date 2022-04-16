@@ -13,4 +13,8 @@ class Game extends Model
         'splashArtUrl',
         'url'
     ];
+    public function chats()
+    {
+        return $this->hasMany(ChatRoom::class);
+    }
 }
