@@ -26,7 +26,24 @@ class ChatRoomController extends Controller
         }
     }
 //Chats by Id
+public function chatById(Request $request){
 
+    $id = $request->input('id');
+
+    try {
+
+        $chat = ChatRoom::all()
+        ->where('id', "=", $id);
+        return $chat;
+
+    } catch (QueryException $error) {
+
+        $codeError = $error->errorInfo[1];
+        if($codeError){
+            return "Error $codeError";
+        }
+    }
+}
 
 
 
