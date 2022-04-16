@@ -44,7 +44,27 @@ public function chatById(Request $request){
         }
     }
 }
+//Chat by Id for Game
+public function chatByGameId(Request $request){
 
+    $id = $request->input('id');
+
+    try {
+        $chat = ChatRoom::selectRaw('chats.name , games.title, users.name')
+        ->join('games', 'chats.GameId', '=', 'games.id')
+        ->where('chats.GameId', "=", $id)
+        ->join('users', 'chats.OwnerId', '=', 'users.id')
+        ->get();
+        return $chat;
+
+    } catch (QueryException $error) {
+
+        $codeError = $error->errorInfo[1];
+        if($codeError){
+            return "Error $codeError";
+        }
+    }
+}
 
 
 
