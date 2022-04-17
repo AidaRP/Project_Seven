@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 
-use App\Models\User;
+use App\Models\Player;
 
 class PlayerController extends Controller
 {
@@ -14,7 +14,7 @@ class PlayerController extends Controller
     {
 
         try {
-            $players = User::all();
+            $players = Player::all();
             return $players;
         } catch (QueryException $error) {
 
@@ -25,13 +25,13 @@ class PlayerController extends Controller
         }
     }
 
-    //List PLayer By Id
+    //List Player By Id
     public function playerById(Request $request)
     {
 
         $id = $request->input('id');
         try {
-            $player = User::all()->where('id', "=", $id);
+            $player = Player::all()->where('id', "=", $id);
             return $player;
         } catch (QueryException $error) {
             $codeError = $error->errorInfo[1];
@@ -53,7 +53,7 @@ class PlayerController extends Controller
         $role = $request->input('role');
 
         try {
-            $player = User::where('id', "=", $id)->update(
+            $player = Player::where('id', "=", $id)->update(
                 [
                     'name' => $name,
                     'nick' => $nick,
@@ -62,7 +62,7 @@ class PlayerController extends Controller
                     'role' => $role,
                 ]
             );
-            return User::all()->where('id', "=", $id);
+            return Player::all()->where('id', "=", $id);
         } catch (QueryException $error) {
             $codeError = $error->errorInfo[1];
             if ($codeError) {
@@ -75,9 +75,9 @@ class PlayerController extends Controller
         $id = $request->input('id');
 
         try {
-            $arrayPlayer = User::all()->where('id', "=", $id);
+            $arrayPlayer = Player::all()->where('id', "=", $id);
 
-            $player = User::where('id', '=', $id);
+            $player = Player::where('id', '=', $id);
 
             if(count($arrayPlayer) == 0){
                 return response()->json([
