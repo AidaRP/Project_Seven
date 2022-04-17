@@ -14,7 +14,18 @@ return new class extends Migration
     public function up()
     {
         Schema::create('messages', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->string('message', 700);
+            $table->string('date', 100);
+            $table->unsignedInteger('FromPlayer');
+            $table->foreign('FromPlayer')
+            ->references('id')
+            ->on('users')
+            ->unsigned()
+            ->constrained('users')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
+            $table->foreign('PartyId');
             $table->timestamps();
         });
     }
