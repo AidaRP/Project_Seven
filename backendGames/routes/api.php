@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MemberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+    Route::get('members', [MemberController::class, "membersAll"]);
+    Route::post('memberByID', [MemberController::class, "memberByID"]);
+    Route::post('memberByPartyID', [MemberController::class, "memberByPartyID"]);
+    Route::post('memberByPlayerID', [MemberController::class, "memberByPlayerID"]);
+    Route::post('newMember', [MemberController::class, "memberAdd"]);
+    Route::put('updateMember', [MemberController::class, "memberUpdate"]);
+    Route::delete('deleteMember', [MemberController::class, "memberDelete"]);
 });
