@@ -18,10 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->group(function (){
    
 
-    Route::get('players', [PlayerController::class, 'playersAll']);
-    Route::post('playerById', [PlayerController::class, "playerById"]);
-    Route::put('updatePlayer',[PlayerController::class,"playerUpdate"]);
-    Route::delete('deletePlayer',[PlayerController::class,"playerDelete"]);
+    Route::get('playersAll', [PlayerController::class, 'playersAll']);
+    Route::post('playerByID', [PlayerController::class, "playerByID"]);
+    Route::put('playerUpdate',[PlayerController::class,"playerUpdate"]);
+    Route::delete('playerDelete',[PlayerController::class,"playerDelete"]);
     
 });
 
