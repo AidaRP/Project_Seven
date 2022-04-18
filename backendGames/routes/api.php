@@ -24,4 +24,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     Route::post('newMember', [MemberController::class, "memberAdd"]);
     Route::put('updateMember', [MemberController::class, "memberUpdate"]);
     Route::delete('deleteMember', [MemberController::class, "memberDelete"]);
+    
+    Route::get('messages', [MessageController::class, "messagesAll"]);
+    Route::post('messageById', [MessageController::class, "messageById"]);
+    Route::post('messageByPartyId', [MessageController::class, "messageByPartyId"]);
+    Route::post('newMessage', [MessageController::class, "messageAdd"]);
+    Route::put('updateMessage', [MessageController::class, "messageUpdate"]);
+    Route::delete('deleteMessage', [MessageController::class, "messageDelete"]);
 });
