@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\GameController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     Route::put('updateMessage', [MessageController::class, "messageUpdate"]);
     Route::delete('deleteMessage', [MessageController::class, "messageDelete"]);
 });
+// Route::middleware('auth:api')->group(function () {
+
+    Route::get('games', [GameController::class, "gamesAll"]);
+
+    
+    Route::get('gameById', [GameController::class, "gameByID"]);
+    Route::post('gameAdd', [GameController::class, "gameAdd"]);
+    Route::put('gameUpdate', [GameController::class, "gameUpdate"]);
+    Route::delete('gameDeleteById', [GameController::class, "gameDeleteById"]);
+// });
