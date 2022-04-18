@@ -14,7 +14,24 @@ return new class extends Migration
     public function up()
     {
         Schema::create('parties', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->string('name', 100);
+            $table->unsignedInteger('GameID');
+            $table->foreign('GameID')
+            ->references('id')
+            ->on('games')
+            ->unsigned()
+            ->constrained('games')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
+            $table->unsignedInteger('OwnerID');
+            $table->foreign('OwnerID')
+            ->references('id')
+            ->on('users')
+            ->unsigned()
+            ->constrained('users')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
             $table->timestamps();
         });
     }
