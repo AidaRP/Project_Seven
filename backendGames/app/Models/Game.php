@@ -15,6 +15,6 @@ class Game extends Model
     ];
     public function chats()
     {
-        return $this->hasMany(ChatRoom::class);
+        return $this->hasMany(Party::class);
     }
 }

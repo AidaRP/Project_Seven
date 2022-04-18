@@ -21,6 +21,6 @@ class Message extends Model
 
     public function chats()
     {
-        return $this->belongsTo(ChatRoom::class);
+        return $this->belongsTo(Party::class);
     }
 }
