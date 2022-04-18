@@ -1,5 +1,6 @@
 <?php
 
+use GuzzleHttp\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
@@ -43,3 +44,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     Route::put('gameUpdate', [GameController::class, "gameUpdate"]);
     Route::delete('gameDeleteById', [GameController::class, "gameDeleteById"]);
 // });
+Route::middleware('auth:api')->group(function (){
+   
+
+    Route::get('playersAll', [PlayerController::class, 'playersAll']);
+    Route::post('playerByID', [PlayerController::class, "playerByID"]);
+    Route::put('playerUpdate',[PlayerController::class,"playerUpdate"]);
+    Route::delete('playerDelete',[PlayerController::class,"playerDelete"]);
+    
+});
+
+//Middleware example
+Route::get('/task_middleware', [TaskController::class, 'exampleMiddleware'])->middleware('task_middleware');
