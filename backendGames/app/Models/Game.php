@@ -13,7 +13,7 @@ class Game extends Model
         'splashArtUrl',
         'url'
     ];
-    public function chats()
+    public function parties()
     {
         return $this->hasMany(Party::class);
     }

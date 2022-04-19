@@ -11,7 +11,7 @@ class Message extends Model
     public $fillable = [
         'message',
         'date',
-        'FromPlayer',
+        'fromPlayer',
         'PartyId'
     ];
     public function players()
@@ -19,7 +19,7 @@ class Message extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function chats()
+    public function parties()
     {
         return $this->belongsTo(Party::class);
     }

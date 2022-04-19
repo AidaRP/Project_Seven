@@ -53,7 +53,7 @@ class MessageController extends Controller
             $message = Message::selectRaw('messages.message, users.username, parties.name')
                 ->join('parties', 'parties.id', '=', 'messages.PartyId')
                 ->where('messages.PartyId', "=", $id)
-                ->join('users', 'users.id', '=', 'messages.FromPlayer')
+                ->join('users', 'users.id', '=', 'messages.fromPlayer')
                 ->get();
             return $message;
         } catch (QueryException $error) {
@@ -70,7 +70,7 @@ class MessageController extends Controller
 
         $message = $request->input('message');
         $date = $request->input('date');
-        $FromPlayer = $request->input('FromPlayer');
+        $fromPlayer = $request->input('fromPlayer');
         $PartyId = $request->input('PartyId');
 
         try {
@@ -79,7 +79,7 @@ class MessageController extends Controller
                 [
                     'message' => $message,
                     'date' => $date,
-                    'FromPlayer' => $FromPlayer,
+                    'fromPlayer' => $fromPlayer,
                     'PartyId' => $PartyId
                 ]
             );
@@ -98,7 +98,7 @@ class MessageController extends Controller
         $id = $request->input('id');
         $message = $request->input('message');
         $date = $request->input('date');
-        $FromPlayer = $request->input('FromPlayer');
+        $fromPlayer = $request->input('fromPlayer');
         $PartyId = $request->input('PartyId');
 
         try {
@@ -108,7 +108,7 @@ class MessageController extends Controller
                     [
                         'message' => $message,
                         'date' => $date,
-                        'FromPlayer' => $FromPlayer,
+                        'fromPlayer' => $fromPlayer,
                         'PartyId' => $PartyId
                     ]
                 );
